@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<!-- saved from url=(0022)http://127.0.0.1:8000/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet" href="./Weather Forecast_files/bootstrap-icons.min.css">
+    <link rel="icon" href="http://127.0.0.1:8000/static/img/site-pic.ico" type="image/icon">
+    <link rel="stylesheet" href="./Weather Forecast_files/styles.css">
+    <title>Weather Forecast</title>
+</head>
+<body>
+<main class="">
+      
+    <div class="error-message" style="color: red; text-align: center; margin-top: 10px;">
+        <p>Invalid city name. Please try again.</p>
+    </div>
+    
+    <section class="side-container">
+        <form method="POST">
+            <input type="hidden" name="csrfmiddlewaretoken" value="TcQo9SmdbszqkZuHdHUlwh5IcymdsC8tQon3KMTISXNDEF1ufUp8eWPBEMLvqL86">
+            <div class="search-container">
+                <div style="width:20px; height:20px;color:white;" class="weather-icon">
+                  <i class="bi bi-cloud-fog2"></i>
+                </div>
+              <input type="text" name="city" class="geo-input" placeholder="ex. Delhi" value="">
+                <button class="search-button">
+                    <div style="width:25px; height:25px;color:white;">
+                        <i class="bi bi-search"></i>
+                        </div>
+                </button>
+            </div>
+        </form>
+        <div class="day-stats">
+            <h2 class="day-stats_temperature">
+            </h2>
+            <h3 class="day-stats_feelslike">
+                Temperature:&nbsp;&nbsp;<span class="day-stats_temperature_value"></span>°
+                 <br>Feels like:&nbsp;&nbsp;<span class="day-stats_feelslike_value">
+            </span>°
+            </h3>
+            <ul class="day-stats_conditions">
+                <li>
+                <p class="day-stats_condition">
+                    <span class="day-stats_humidity">%</span>
+                </p>
+                    <p class="day-stats_humidity_text"> of humidity</p>
+                </li>
+                <li>
+                <p class="day-stats_condition">
+                    <span class="day-stats_clouds">%</span>
+                </p>
+                    <p class="day-stats_condition_text">of Clouds</p>
+                </li>
+            </ul>
+        </div>
+        <img src="./Weather Forecast_files/side-blur.png" class="side-blur" alt="blur">
+    </section>
+    <section class="main-container">
+        <h2 class="secondary-title">Weather Forecast</h2>
+        <h1 class="weather_primary-title"></h1>
+        <div class="weather_location">
+            <div style="width:15px; height:15px; color:white;" class="location-icon">
+                <i class="bi bi-geo-alt-fill"></i>
+            </div>
+            <p class="weather_location-text">
+                <span class="weather_location-city"></span>
+                <span class="weather_location-country"></span>
+                <span class="weather_location-date"></span>
+            </p>
+        </div>
+        <p class="weather_primary-stats">
+            Wind
+            <span class="weatherWindKph"></span> kilometers per hour. Pressure
+            is <span class="weatherPressure"></span> mb. Visibility is <span class="weatherSnow"> m</span>.
+            Maximum temperature is <span class="weatherMaxTemp"></span>. Minimum temperature is
+            <span class="weatherMinTemp"></span>.
+        </p>
+
+        <ul class="forecast">
+            <li class="forecast_item">
+            <p class="forecast-temperature">
+                </p><p>
+                <span class="forecast-time"></span>
+            </p>
+                <p class="forecast-temperature">
+                <span class="forecast-temperatureValue"></span>°
+            </p>
+                <p class="forecastWindText">
+                    Humidity:<span class="forecast-humidityValue"></span>
+                </p>
+            </li>
+           <li class="forecast-item">
+            <p class="forecast-temperature">
+                </p><p class="forecast-time"></p>
+                <p class="forecast-temperature">
+                &nbsp;<span class="forecast-temperatureValue"></span>°
+            </p>
+                <p class="forecastWindText">
+                    Humidity:<span class="forecast-humidityValue"></span>
+                </p>
+            </li>
+            <li class="forecast-item">
+            <p class="forecast-temperature">
+                </p><p class="forecast-time"></p>
+                <p class="forecast-temperature">
+                &nbsp;<span class="forecast-temperatureValue"></span>°
+            </p>
+                <p class="forecastWindText">
+                    Humidity:<span class="forecast-humidityValue"></span>
+                </p>
+            </li>
+            <li class="forecast-item">
+            <p class="forecast-temperature">
+                </p><p class="forecast-time"></p>
+                <p class="forecast-temperature">
+                &nbsp;<span class="forecast-temperatureValue"></span>°
+            </p>
+                <p class="forecastWindText">
+                    Humidity:<span class="forecast-humidityValue"></span>
+                </p>
+            </li>
+            <li class="forecast-item">
+            <p class="forecast-temperature">
+                </p><p class="forecast-time"></p>
+                <p class="forecast-temperature">
+                &nbsp;<span class="forecast-temperatureValue"></span>°
+            </p>
+                <p class="forecastWindText">
+                    Humidity:<span class="forecast-humidityValue"></span>
+                </p>
+            </li>
+        </ul>
+
+    </section>
+</main>
+
+
+</body></html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset ="UTF-8"/>
+    <meta name="viewport" content ="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="icon" href="{% static 'img/site-pic.ico' %}" type="image/icon">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}?t={{ current_time }}">
+    <title>Weather Forecast</title>
+</head>
+<body>
+<main class="{{ description }}">
+    {% if error %}
+    <script type="text/javascript">
+        alert("{{ error }}");
+    </script>
+    {% endif %}
+
+    <!-- Top Search Bar -->
+    <header class="top-header">
+        <form method="POST" class="search-form">
+            {% csrf_token %}
+            <div class="search-container">
+                <i class="bi bi-geo-alt search-icon"></i>
+                <input
+                    type="text"
+                    name="city"
+                    class="geo-input"
+                    placeholder="Search city..."
+                    value="{{location}}"
+                >
+                <button type="submit" class="search-button">
+                    <i class="bi bi-search"></i>
+                </button>
+            </div>
+        </form>
+    </header>
+
+    <div class="app-content">
+        <!-- Left Panel: ML Model -->
+        <section class="panel left-panel">
+            <div class="panel-glass">
+                <h3 class="panel-title">Predictive AI Analysis</h3>
+                
+                <div class="comparison-card">
+                    <div class="comparison-header">
+                        <span class="comparison-title"><i class="bi bi-cpu"></i> ML Analysis</span>
+                        <span class="status-dot" title="Model Reliability: {{ model_accuracy }}"></span>
+                    </div>
+                    <div class="comparison-value">
+                        Rain: {{ rain_prediction }}
+                    </div>
+                    <div class="confidence-bar-container">
+                        <div class="confidence-bar" style="width: {{ rain_probability }};" title="Confidence: {{ rain_probability }}"></div>
+                    </div>
+                </div>
+
+                <div class="forecast-section">
+                    <h4 class="sub-title">AI Hourly Forecast</h4>
+                    <ul class="forecast-list">
+                        <li class="forecast-item">
+                            <span class="time">{{ time1 }}</span>
+                            <span class="temp">{{ temp1 }}°</span>
+                            <span class="hum">H: {{ hum1 }}%</span>
+                        </li>
+                        <li class="forecast-item">
+                            <span class="time">{{ time2 }}</span>
+                            <span class="temp">{{ temp2 }}°</span>
+                            <span class="hum">H: {{ hum2 }}%</span>
+                        </li>
+                        <li class="forecast-item">
+                            <span class="time">{{ time3 }}</span>
+                            <span class="temp">{{ temp3 }}°</span>
+                            <span class="hum">H: {{ hum3 }}%</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Center Panel: Current Weather -->
+        <section class="panel center-panel">
+            <div class="weather-summary">
+                <h2 class="secondary-title">Weather Forecast</h2>
+                <h1 class="weather_primary-title">{{ description }}</h1>
+                <div class="weather_location">
+                    <i class="bi bi-geo-alt-fill"></i>
+                    <p class="weather_location-text">
+                        <span class="weather_location-city">{{ city }}</span>
+                        <span class="weather_location-country">{{ country }}</span>
+                    </p>
+                </div>
+                <div class="main-temp-display">
+                    <span class="current-temp">{{ current_temp }}°</span>
+                </div>
+                <p class="weather_primary-stats">
+                    Wind: {{ wind }} km/h | Humidity: {{ humidity }}% | Cloud: {{ clouds }}%
+                </p>
+            </div>
+        </section>
+
+        <!-- Right Panel: Google/Industry Model -->
+        <section class="panel right-panel">
+            <div class="panel-glass">
+                <h3 class="panel-title">Global Industry Standard</h3>
+                
+                <div class="comparison-card industry">
+                    <div class="comparison-header">
+                        <span class="comparison-title"><i class="bi bi-globe"></i> Industry Standard</span>
+                    </div>
+                    <div class="comparison-value">
+                        Rain: {{ google_rain }}
+                    </div>
+                </div>
+
+                <div class="forecast-section">
+                    <h4 class="sub-title">Global Hourly Forecast</h4>
+                    <ul class="forecast-list">
+                        {% for item in standard_forecast|slice:":3" %}
+                        <li class="forecast-item">
+                            <span class="time">{{ item.time }}</span>
+                            <span class="temp">{{ item.temp }}°</span>
+                            <span class="hum">H: {{ item.humidity }}%</span>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </div>
+</main>
+</body>
+</html>
